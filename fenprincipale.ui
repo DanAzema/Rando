@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FenPrincipale</class>
+ <widget class="QMainWindow" name="FenPrincipale">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1022</width>
+    <height>792</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RANDO MONTBRUN</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="rando-ressources.qrc">
+    <normaloff>:/icones/icones/hiker_17.gif</normaloff>:/icones/icones/hiker_17.gif</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="boutonLireGraphe">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>231</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initialisation avec le fichier sélectionné.&lt;/p&gt;&lt;p&gt;Menu Fichier pour changer la sélection.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Lire le graphe de Points Tournants</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="choixDistanceMin">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Choisir Distance Minimale</string>
+    </property>
+    <property name="minimum">
+     <number>50</number>
+    </property>
+    <property name="maximum">
+     <number>350</number>
+    </property>
+    <property name="value">
+     <number>80</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="choixDistanceMax">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Choisir distance maximle</string>
+    </property>
+    <property name="minimum">
+     <number>50</number>
+    </property>
+    <property name="maximum">
+     <number>350</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="distanceMinChoisie">
+    <property name="geometry">
+     <rect>
+      <x>233</x>
+      <y>102</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>10</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Affiche Distance Minimum choisie</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: blue; background-color: yellow;
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="digitCount">
+     <number>3</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>8.000000000000000</double>
+    </property>
+    <property name="intValue" stdset="0">
+     <number>8</number>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="distanceMaxChoisie">
+    <property name="geometry">
+     <rect>
+      <x>233</x>
+      <y>62</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Affiche Distance Max Choisie</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: blue; background-color: yellow</string>
+    </property>
+    <property name="smallDecimalPoint">
+     <bool>false</bool>
+    </property>
+    <property name="digitCount">
+     <number>4</number>
+    </property>
+    <property name="value" stdset="0">
+     <double>10.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="texteMax">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>70</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MAX</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="texteMin">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>110</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MIN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="affichageNomFichier">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>10</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>3</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>3</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nom du fichier des Points sélectionné pour initialiwser le graphe&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string>PointGeoDonnees-fr.txt</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="affichageDiagnostics">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>291</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>5</width>
+      <height>5</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>affiche les diagnostics du programme, en particulier sur les défauts du fichier des points tournants</string>
+    </property>
+    <property name="placeholderText">
+     <string>Ça marche ?</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="typesDeChemin">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>40</y>
+      <width>111</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Cocher les cases pour choisir les types de chemin que l'on souhaite</string>
+    </property>
+    <property name="title">
+     <string>Types de Chemins</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>111</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="checkBoxRouteGoudronnee">
+        <property name="text">
+         <string>Route Goudronnée</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxRteFrequentee">
+        <property name="text">
+         <string>Rte Fréquentée</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxCheminPierre">
+        <property name="text">
+         <string>Chemin empierré</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxSentier">
+        <property name="text">
+         <string>Sentier(Bois)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxCheminDeTerre">
+        <property name="text">
+         <string>Chemin de Terre</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="boutonTrouverCircuits">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(188, 255, 210);
+color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>Trouver les Circuits</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="vueCiruits">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>551</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>affiche la liste des Circuits Trouvés</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(239, 252, 255);
+color: rgb(147, 0, 0);</string>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QListView" name="vueListeDesPoints">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>30</y>
+      <width>221</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Liste des Points du Graphe des Points Tournants&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(253, 233, 255);
+color: rgb(166, 75, 15);
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="affichagePointDeDepart">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>210</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="toolTip">
+     <string>Affiche le Point sélectionné qui sert aussi de point de départ</string>
+    </property>
+    <property name="statusTip">
+     <string>Affiche point de départ choisi</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(170, 85, 127);
+background-color: rgb(255, 243, 213);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="text">
+     <string>Arming</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="indicChoix">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>49</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Choix des paramètres</string>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="vuePointTournant">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>30</y>
+      <width>301</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Affiche les détails du Point sélectionné</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(253, 233, 255);
+color: rgb(166, 75, 15);
+</string>
+    </property>
+    <attribute name="headerVisible">
+     <bool>false</bool>
+    </attribute>
+   </widget>
+   <widget class="QGraphicsView" name="vueDessinCircuit">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>250</y>
+      <width>421</width>
+      <height>461</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dessin vectoriel du chemin choisi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(233, 255, 220);
+color:rgb(118, 108, 71)</string>
+    </property>
+    <property name="dragMode">
+     <enum>QGraphicsView::ScrollHandDrag</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="boutonZoom">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>660</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Appuyer pour Zoomer</string>
+    </property>
+    <property name="text">
+     <string>Zoom+</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="boutonZoomMoins">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>660</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom-</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="circuitChoisi">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>620</y>
+      <width>561</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>500</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Affiche le circuit ou chemin en cours.&lt;/p&gt;&lt;p&gt;Affiche le retour le plus court si on est en construction&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(239, 252, 255);
+color: rgb(147, 0, 0);</string>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNbCircuits">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>210</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Nombre de Circuits trouvés</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 127);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>-1</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="choixNbDblOccur">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>210</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Choisir Nombre de répétition de points autorisé</string>
+    </property>
+    <property name="minimum">
+     <number>2</number>
+    </property>
+    <property name="value">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="texteNbrDblOccur">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>210</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nb Doubles Occurences</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNbPoints">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>30</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 127);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="digitCount">
+     <number>3</number>
+    </property>
+    <property name="segmentStyle">
+     <enum>QLCDNumber::Flat</enum>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxAvecFichier">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>190</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cocher pour créer un fichier avec la liste des circuits trouvés&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Sortie Fichier</string>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="vueConstruireCircuit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>551</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Cliquer sur l'un des Points Suivants pour le rajouter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(239, 252, 255);
+color: rgb(147, 0, 0);</string>
+    </property>
+    <property name="headerHidden">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boutonReculer">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>590</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clicker pour reculer d'un point&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(188, 255, 210);
+color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>RECULER</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boutonNouveau">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>590</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cliquer commencer un nouveau parcours avec le point de départ et les types de chemin sélectionnés&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(188, 255, 210);
+color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>NOUVEAU</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boutonChPlusCourt">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>590</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cliquer pour insérer le retour au départ par le chemin le plus court&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(188, 255, 210);
+color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>RETOUR + COURT</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boutonFavoris">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>210</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(188, 255, 210);
+color: rgb(0, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>FAVORIS</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1022</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Fichier">
+    <property name="title">
+     <string>&amp;Fichier</string>
+    </property>
+    <addaction name="actionSelectionFichier"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <widget class="QMenu" name="menuZoom">
+    <property name="title">
+     <string>Zoom</string>
+    </property>
+    <addaction name="actionZoom_IN"/>
+    <addaction name="actionZoom_OUT"/>
+   </widget>
+   <widget class="QMenu" name="menuOutils">
+    <property name="title">
+     <string>Outils</string>
+    </property>
+    <addaction name="actionConstruire_Parcours"/>
+    <addaction name="actionVoir_Construction"/>
+    <addaction name="actionRafraichir_Circuit"/>
+    <addaction name="actionParcours_Favoris"/>
+    <addaction name="actionVoir_les_Points_Tournant"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="actionAide"/>
+    <addaction name="actionA_Propos"/>
+   </widget>
+   <addaction name="menu_Fichier"/>
+   <addaction name="menuOutils"/>
+   <addaction name="menuZoom"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSelectionFichier"/>
+   <addaction name="actionZoom_IN"/>
+   <addaction name="actionZoom_OUT"/>
+   <addaction name="actionParcours_Favoris"/>
+   <addaction name="actionConstruire_Parcours"/>
+   <addaction name="actionRafraichir_Circuit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="separator"/>
+   <addaction name="actionAide"/>
+   <addaction name="actionVoir_les_Points_Tournant"/>
+   <addaction name="actionQuitter"/>
+  </widget>
+  <action name="actionSelectionFichier">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/ouvrir.png</normaloff>:/icones/icones/ouvrir.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Selection  fichier points</string>
+   </property>
+  </action>
+  <action name="actionZoom_IN">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/zoom-.png</normaloff>:/icones/icones/zoom-.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom IN</string>
+   </property>
+  </action>
+  <action name="actionZoom_OUT">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/zoom+.png</normaloff>:/icones/icones/zoom+.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom OUT</string>
+   </property>
+  </action>
+  <action name="actionOutils">
+   <property name="text">
+    <string>Outils</string>
+   </property>
+  </action>
+  <action name="actionConstruire_Parcours">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/icons8-carte-balisée-480.png</normaloff>:/icones/icones/icons8-carte-balisée-480.png</iconset>
+   </property>
+   <property name="text">
+    <string>Construire Parcours</string>
+   </property>
+  </action>
+  <action name="actionVoir_Construction">
+   <property name="text">
+    <string>Voir Construction</string>
+   </property>
+  </action>
+  <action name="actionAide">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/aide.png</normaloff>:/icones/icones/aide.png</iconset>
+   </property>
+   <property name="text">
+    <string>Aide</string>
+   </property>
+  </action>
+  <action name="actionA_Propos">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/hiking_5046.png</normaloff>:/icones/icones/hiking_5046.png</iconset>
+   </property>
+   <property name="text">
+    <string>A Propos</string>
+   </property>
+  </action>
+  <action name="actionRafraichir_Circuit">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/button_refresh_15001.png</normaloff>:/icones/icones/button_refresh_15001.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rafraichir Circuit</string>
+   </property>
+  </action>
+  <action name="actionParcours_Favoris">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/button_favorite_14944.png</normaloff>:/icones/icones/button_favorite_14944.png</iconset>
+   </property>
+   <property name="text">
+    <string>Parcours Favoris</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/button_turn_on_15006.png</normaloff>:/icones/icones/button_turn_on_15006.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionVoir_les_Points_Tournant">
+   <property name="icon">
+    <iconset resource="rando-ressources.qrc">
+     <normaloff>:/icones/icones/map.png</normaloff>:/icones/icones/map.png</iconset>
+   </property>
+   <property name="text">
+    <string>Voir les Points Tournant</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="rando-ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

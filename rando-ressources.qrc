@@ -1,2 +1,17 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource lang="fr" prefix="/icones">
+        <file>icones/aide.png</file>
+        <file>icones/ouvrir.png</file>
+        <file>icones/zoom-.png</file>
+        <file>icones/zoom+.png</file>
+        <file>icones/icons8-carte-balisée-480.png</file>
+        <file>icones/button_refresh_15001.png</file>
+        <file>icones/hiking_5046.png</file>
+        <file>icones/button_turn_on_15006.png</file>
+        <file>icones/button_favorite_14944.png</file>
+        <file>icones/filled_hiking_icon-icons.com_59350.png</file>
+        <file>icones/3687834-adventure-boot-footwear-hiking-walking_108818.png</file>
+        <file>icones/hiker_17.gif</file>
+        <file>icones/map.png</file>
+    </qresource>
+</RCC>
